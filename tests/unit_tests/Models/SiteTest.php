@@ -485,7 +485,6 @@ class SiteTest extends ModelTestCase
             'holder_id' => 'holder id',
             'owner' => 'owner id',
             'frozen' => 'yes',
-            'last_frozen_at' => '1682641540',
         ];
         $expected_data = [
             'id' => $this->model->id,
@@ -503,8 +502,7 @@ class SiteTest extends ModelTestCase
             'frozen' => 'true',
             'memberships' => implode(',', $this->model->memberships),
             'tags' => implode(',', $tags),
-            'max_num_cdes' => 0,
-            'last_frozen_at' => '2023-04-28 00:25:40',
+            'max_num_cdes' => null,
         ];
 
         $this->request->expects($this->once())
@@ -545,7 +543,6 @@ class SiteTest extends ModelTestCase
             'holder_id' => 'holder id',
             'owner' => 'owner id',
             'frozen' => 'yes',
-            'last_frozen_at' => 'April 28, 2023 9:20PM',
         ];
         $expected_data = [
             'id' => $this->model->id,
@@ -563,8 +560,7 @@ class SiteTest extends ModelTestCase
             'frozen' => 'true',
             'memberships' => implode(',', $this->model->memberships),
             'tags' => implode(',', $tags),
-            'max_num_cdes' => 0,
-            'last_frozen_at' => '2023-04-28 21:20:00',
+            'max_num_cdes' => null,
         ];
 
         $this->request->expects($this->once())

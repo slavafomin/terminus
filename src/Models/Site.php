@@ -332,15 +332,12 @@ class Site extends TerminusModel implements ConfigAwareInterface, ContainerAware
     {
         $settings = $this->get('settings');
 
-        $date_format = $this->getConfig()->get('date_format');
-        $format_date = function ($attribute) use ($date_format) {
-            return date($date_format, is_numeric($date = $this->get($attribute)) ? $date : strtotime($date));
-        };
+        $created_date = is_numeric($created = $this->get('created')) ? $created : strtotime($created);
         $data = [
             'id' => $this->id,
             'name' => $this->get('name'),
             'label' => $this->get('label'),
-            'created' => $format_date('created'),
+            'created' => date($this->getConfig()->get('date_format'), $created_date),
             'framework' => $this->get('framework'),
             'organization' => $this->get('organization'),
             'service_level' => $this->get('service_level'),
@@ -351,7 +348,6 @@ class Site extends TerminusModel implements ConfigAwareInterface, ContainerAware
             'holder_id' => $this->get('holder_id'),
             'owner' => $this->get('owner'),
             'frozen' => $this->isFrozen() ? 'true' : 'false',
-            'last_frozen_at' => $format_date('last_frozen_at'),
         ];
         if (isset($this->tags)) {
             $data['tags'] = implode(',', $this->tags->ids());

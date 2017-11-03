@@ -24,7 +24,6 @@ Feature: View site information
       Holder Type
       Holder ID
       Owner
-      Date Last Frozen
     """
 
   @vcr site-info-owner.yml
